@@ -65,6 +65,12 @@ body {
   color: #e3e2e5;
 }
 
+@media (min-width: 769px) {
+  * {
+    cursor: none !important;
+  }
+}
+
 .glass-panel {
   background: rgba(26, 26, 26, 0.8);
   backdrop-filter: blur(12px);
@@ -135,4 +141,66 @@ body {
   line-height: 1.0;
   letter-spacing: 0.1em;
   font-weight: 700;
+}
+
+/* Globe Wireframe */
+.wireframe-globe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  transform: translate(-50%, -50%);
+  transform-style: preserve-3d;
+  animation: rotateGlobe 30s linear infinite;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .wireframe-globe {
+    width: 560px;
+    height: 560px;
+  }
+}
+
+@keyframes rotateGlobe {
+  0% { transform: translate(-50%, -50%) rotateX(15deg) rotateY(0deg); }
+  100% { transform: translate(-50%, -50%) rotateX(15deg) rotateY(360deg); }
+}
+
+.wireframe-ring {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 240, 255, 0.15);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.05) inset;
+}
+
+.wireframe-ring:nth-child(1) { transform: rotateY(0deg); }
+.wireframe-ring:nth-child(2) { transform: rotateY(30deg); }
+.wireframe-ring:nth-child(3) { transform: rotateY(60deg); }
+.wireframe-ring:nth-child(4) { transform: rotateY(90deg); }
+.wireframe-ring:nth-child(5) { transform: rotateY(120deg); }
+.wireframe-ring:nth-child(6) { transform: rotateY(150deg); }
+
+.wireframe-ring-h {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 240, 255, 0.15);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) rotateX(90deg);
+}
+
+.wireframe-ring-h.r1 { width: 100%; height: 100%; }
+.wireframe-ring-h.r2 { width: 86.6%; height: 86.6%; transform: translate(-50%, -50%) rotateX(90deg) translateZ(100px); }
+.wireframe-ring-h.r3 { width: 86.6%; height: 86.6%; transform: translate(-50%, -50%) rotateX(90deg) translateZ(-100px); }
+.wireframe-ring-h.r4 { width: 50%; height: 50%; transform: translate(-50%, -50%) rotateX(90deg) translateZ(173px); }
+.wireframe-ring-h.r5 { width: 50%; height: 50%; transform: translate(-50%, -50%) rotateX(90deg) translateZ(-173px); }
+
+@media (min-width: 768px) {
+  .wireframe-ring-h.r2 { transform: translate(-50%, -50%) rotateX(90deg) translateZ(140px); }
+  .wireframe-ring-h.r3 { transform: translate(-50%, -50%) rotateX(90deg) translateZ(-140px); }
+  .wireframe-ring-h.r4 { transform: translate(-50%, -50%) rotateX(90deg) translateZ(242px); }
+  .wireframe-ring-h.r5 { transform: translate(-50%, -50%) rotateX(90deg) translateZ(-242px); }
 }

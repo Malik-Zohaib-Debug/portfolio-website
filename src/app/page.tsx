@@ -104,7 +104,7 @@ export default function Home() {
                 VIEW_PROJECTS
               </button>
               <button className="border border-white/20 text-white px-8 py-4 font-label-caps tracking-widest hover:bg-white/10 transition-all transform hover:-translate-y-1 active:scale-95">
-                CONTACT_ME
+                RESUME
               </button>
             </div>
           </motion.div>

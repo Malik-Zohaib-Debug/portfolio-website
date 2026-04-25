@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
+import CustomCursor from "../components/CustomCursor";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -28,16 +30,17 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body-base overflow-x-hidden min-h-full flex flex-col">
+        <CustomCursor />
         {/* TopNavBar */}
         <nav className="fixed top-0 w-full z-50 flex justify-between items-center px-8 h-16 bg-transparent backdrop-blur-xl border-b border-white/10 shadow-[0_0_15px_rgba(0,240,255,0.15)]">
-          <div className="text-xl font-black text-white tracking-widest font-display-lg uppercase">
+          <Link href="/" className="text-xl font-black text-white tracking-widest font-display-lg uppercase hover:text-cyan-400 transition-colors cursor-pointer">
             M_ZOHAIB.DEV
-          </div>
+          </Link>
           <div className="hidden md:flex gap-8 items-center">
-            <a className="font-['Space_Grotesk'] tracking-tighter uppercase text-xs font-bold text-cyan-400 border-b-2 border-cyan-400 pb-1" href="#">Terminal</a>
-            <a className="font-['Space_Grotesk'] tracking-tighter uppercase text-xs font-bold text-gray-400 hover:text-white transition-colors" href="#">Stack</a>
-            <a className="font-['Space_Grotesk'] tracking-tighter uppercase text-xs font-bold text-gray-400 hover:text-white transition-colors" href="#">Projects</a>
-            <a className="font-['Space_Grotesk'] tracking-tighter uppercase text-xs font-bold text-gray-400 hover:text-white transition-colors" href="#">Log</a>
+            <Link className="font-['Space_Grotesk'] tracking-tighter uppercase text-xs font-bold text-gray-400 hover:text-white transition-colors cursor-pointer" href="/">Terminal</Link>
+            <Link className="font-['Space_Grotesk'] tracking-tighter uppercase text-xs font-bold text-gray-400 hover:text-white transition-colors cursor-pointer" href="/skills">Stack</Link>
+            <Link className="font-['Space_Grotesk'] tracking-tighter uppercase text-xs font-bold text-gray-400 hover:text-white transition-colors cursor-pointer" href="/#projects">Projects</Link>
+            <Link className="font-['Space_Grotesk'] tracking-tighter uppercase text-xs font-bold text-gray-400 hover:text-white transition-colors cursor-pointer" href="/about">Persona</Link>
           </div>
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-3 border-r border-white/10 pr-4">
