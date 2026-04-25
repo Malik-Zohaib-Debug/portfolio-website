@@ -1,6 +1,54 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+
+interface Segment {
+  text: string;
+  className: string;
+}
+
+function TypewriterText({ segments, speed = 50, delay = 0, cursorColor = "bg-primary-container" }: { segments: Segment[], speed?: number, delay?: number, cursorColor?: string }) {
+  const [charIndex, setCharIndex] = useState(0);
+  const [isStarted, setIsStarted] = useState(false);
+
+  const chars: {char: string, className: string}[] = [];
+  segments.forEach((seg) => {
+    for (let i = 0; i < seg.text.length; i++) {
+      chars.push({ char: seg.text[i], className: seg.className });
+    }
+  });
+
+  useEffect(() => {
+    const startTimeout = setTimeout(() => setIsStarted(true), delay);
+    return () => clearTimeout(startTimeout);
+  }, [delay]);
+
+  useEffect(() => {
+    if (!isStarted) return;
+    let timeout: NodeJS.Timeout;
+    if (charIndex < chars.length) {
+      timeout = setTimeout(() => {
+        setCharIndex(prev => prev + 1);
+      }, speed);
+    }
+    return () => clearTimeout(timeout);
+  }, [charIndex, isStarted, chars.length, speed]);
+
+  return (
+    <>
+      {chars.slice(0, charIndex).map((c, i) => (
+        <span key={i} className={c.className}>{c.char}</span>
+      ))}
+      <motion.span
+        animate={{ opacity: [1, 0] }}
+        transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
+        className={`inline-block w-[0.3em] h-[1em] align-middle ml-2 ${cursorColor}`}
+        style={{ marginBottom: '0.1em' }}
+      />
+    </>
+  );
+}
 
 export default function Home() {
   const containerVariants = {
@@ -35,8 +83,16 @@ export default function Home() {
               <span className="font-label-caps text-secondary-fixed">STATUS: READY_TO_ARCHITECT</span>
             </div>
             
-            <h1 className="font-display-lg text-6xl md:text-8xl mb-6 tracking-tighter leading-none uppercase">
-              MUHAMMAD <span className="text-primary-container">ZOHAIB</span> ZAHID
+            <h1 className="font-display-lg text-6xl md:text-8xl mb-6 tracking-tighter leading-none uppercase min-h-[1.2em]">
+              <TypewriterText 
+                segments={[
+                  { text: "MUHAMMAD ", className: "" },
+                  { text: "ZOHAIB", className: "text-primary-container" },
+                  { text: " ZAHID", className: "" }
+                ]} 
+                speed={80}
+                delay={200}
+              />
             </h1>
             
             <p className="text-headline-md text-on-surface-variant font-headline-md mb-8 max-w-xl">
@@ -73,17 +129,29 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="absolute -bottom-10 -right-6 hidden lg:block w-72 glass-panel p-4 font-mono text-[10px] shadow-2xl">
+            <div className="absolute -bottom-10 -right-6 hidden lg:block w-72 glass-panel p-4 font-mono text-[10px] shadow-2xl whitespace-pre-wrap">
               <div className="flex gap-1 mb-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-red-500/50"></div>
                 <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/50"></div>
                 <div className="w-1.5 h-1.5 rounded-full bg-green-500/50"></div>
               </div>
-              <span className="text-purple-400">const</span> architect = &#123;<br/>
-              &nbsp;&nbsp;role: <span className="text-secondary-fixed">&#39;AI Engineer&#39;</span>,<br/>
-              &nbsp;&nbsp;stack: [<span className="text-cyan-400">&#39;Next&#39;</span>, <span className="text-cyan-400">&#39;LangChain&#39;</span>],<br/>
-              &nbsp;&nbsp;status: <span className="text-secondary-fixed">&#39;Deploying...&#39;</span><br/>
-              &#125;;
+              <TypewriterText 
+                segments={[
+                  { text: "const ", className: "text-purple-400" },
+                  { text: "architect = {\n  role: ", className: "" },
+                  { text: "'AI Engineer'", className: "text-secondary-fixed" },
+                  { text: ",\n  stack: [", className: "" },
+                  { text: "'Next'", className: "text-cyan-400" },
+                  { text: ", ", className: "" },
+                  { text: "'LangChain'", className: "text-cyan-400" },
+                  { text: "],\n  status: ", className: "" },
+                  { text: "'Deploying...'", className: "text-secondary-fixed" },
+                  { text: "\n};", className: "" }
+                ]}
+                speed={30}
+                delay={1500}
+                cursorColor="bg-secondary-fixed"
+              />
             </div>
           </motion.div>
         </div>
