@@ -214,63 +214,6 @@ export default function Home() {
         </motion.div>
       </motion.section>
 
-      {/* Projects Section */}
-      <motion.section 
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
-        variants={containerVariants}
-        className="py-24 px-8 md:px-16 border-t border-white/5"
-      >
-        <motion.h2 variants={revealVariants} className="font-display-lg text-4xl uppercase tracking-tighter mb-16 text-center">CORE_PROJECT_PORTFOLIO</motion.h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {[
-            {
-              title: "Walmart Virtual Store CMS",
-              desc: "Optimized performance for virtual store creation tools, implementing automated workflows for product approval and load time improvements.",
-              img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBkSHU5hTfPaXiZWfbxxYlvfkxvrM7oaLzXPfjluDfUzer5dNGzbHlFDJ5afevdcQkRO3f8eaSug7MpT7HHi3gs6VwkCC_EAM7Vnl3yrKv94aUleAi7NLCsZ4_YyYGjh6l8z5yWwKda7mYG4bR9oqSvqa8_QRJKbL3budhd8aRKb1lQKFiDiP22IOqOuQBKKZ4TNA_29YUm1s9gUkDlFJs_HMqnwvhNkuVOnnWR0U_4CmqNuOsxBtWKzF5pzaQpTASE_BoJO53-cvtb",
-              tags: [{text: "NEXT_JS", class: "bg-secondary-fixed text-on-secondary-fixed"}, {text: "DJANGO", class: "bg-white/10 backdrop-blur-md text-white"}]
-            },
-            {
-              title: "Emperia QuickStitch Dashboard",
-              desc: "Built a multi-organization dashboard with real-time analytics and dynamic plan management for 3D virtual world rendering.",
-              img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDEmgsvmoCKJq_2dHn8SVQuW7P76PYRuCW9R9X3IzXyhaaYpwFHoe51ecxnQ0nO0zA6Vgef0cWiVgcEsDqpHM_S4vqzBZAkv2JC-OJJiGH2xGI54O54NpY_Xx7ikAG9NzMLwFvH2UO-PYHd15QPS_1VVNUf6g-oyciFsjFNcPbvds6AcDbcIkYyaAZ8nedwdOy0GstEqockKd3DeMyp2qYeRY3E4tDuN73Bas4xldpoVUQXY2cAymKri8CzUycslnzy3lMEEL81p76u",
-              tags: [{text: "REACT", class: "bg-secondary-fixed text-on-secondary-fixed"}, {text: "M3TER", class: "bg-white/10 backdrop-blur-md text-white"}]
-            },
-            {
-              title: "Directed IRA Secure Portal",
-              desc: "Enhanced platform security by 40% and improved system scalability through automated transaction processing and NestJS architecture.",
-              img: "https://lh3.googleusercontent.com/aida-public/AB6AXuD3Oyujtcg2IUi2OPG5cJTqpdeOb3j7fFChOerGORbcp31GhT3NQ9fj5jsovx9mI-rQojyahNMHIRXvxhl46WwA2ScDkITvDD710RLCaHR5baB6iLX2teS2ZYjqgOR5s5D2_YQGmXnvBx-hyH0whZmY64xspDL7m3NXlYTdSmxMyir61ZoGew9-znfc5duhyaOVe3z00aDw-aVlwvAswPkFiEgcrhfWQ0IH44QmYmPSUL7iFBrE6Kt4P-mq-nLeN0CnpF9yBdqYqOyr",
-              tags: [{text: "NESTJS", class: "bg-secondary-fixed text-on-secondary-fixed"}, {text: "POSTGRES", class: "bg-white/10 backdrop-blur-md text-white"}]
-            },
-            {
-              title: "Dark Weather (AI Powered)",
-              desc: "Architected an agentic AI weather assistant using OpenAI SDK and vector databases for personalized conversational context.",
-              img: "https://lh3.googleusercontent.com/aida-public/AB6AXuA6jcItg94FSXWSBraRv6NJL1vZJ4D1sill-hMkNVZBv_1wpjsviYF5jS5M8DntXRz1tcPo_drsgHzDUa22WKYymxnkzAZOkprZaR96V95COpL3lY7f0WgdjbzoKzBuwVWAijb7wCtrOFHRUoVADJBfxubF9A4fMrKdmBnh94_9NjXN23_gCesODWB1f2Iu0X0Y6rXLbRzw9WkC_QmGARSi8S0lMIQhSrAO9vt_aiAl7dEMQSfXEOKljkymqvQQxOGMj0UbnkzGxHV3",
-              tags: [{text: "PYTHON", class: "bg-secondary-fixed text-on-secondary-fixed"}, {text: "OPENAI SDK", class: "bg-white/10 backdrop-blur-md text-white"}]
-            }
-          ].map((proj, idx) => (
-            <motion.div variants={revealVariants} key={idx} className="flex flex-col gap-6 group">
-              <div className="relative aspect-video overflow-hidden border border-white/10 glass-panel card-hover-effect">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img alt={proj.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-105" src={proj.img} />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 flex gap-2">
-                  {proj.tags.map((tag, tIdx) => (
-                    <span key={tIdx} className={`${tag.class} px-2 py-1 text-[10px] font-bold`}>{tag.text}</span>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <h3 className="text-headline-md text-white mb-2 group-hover:text-primary-container transition-colors">{proj.title}</h3>
-                <p className="text-on-surface-variant text-body-base">{proj.desc}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.section>
-
       {/* Professional Experience & Certs */}
       <motion.section 
         initial="hidden"

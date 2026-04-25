@@ -39,7 +39,7 @@ export default function RootLayout({
           <div className="hidden md:flex gap-8 items-center">
             <Link className="font-['Space_Grotesk'] tracking-tighter uppercase text-xs font-bold text-gray-400 hover:text-white transition-colors cursor-pointer" href="/">Terminal</Link>
             <Link className="font-['Space_Grotesk'] tracking-tighter uppercase text-xs font-bold text-gray-400 hover:text-white transition-colors cursor-pointer" href="/skills">Stack</Link>
-            <Link className="font-['Space_Grotesk'] tracking-tighter uppercase text-xs font-bold text-gray-400 hover:text-white transition-colors cursor-pointer" href="/#projects">Projects</Link>
+            {/* <Link className="font-['Space_Grotesk'] tracking-tighter uppercase text-xs font-bold text-gray-400 hover:text-white transition-colors cursor-pointer" href="/#projects">Projects</Link> */}
             <Link className="font-['Space_Grotesk'] tracking-tighter uppercase text-xs font-bold text-gray-400 hover:text-white transition-colors cursor-pointer" href="/about">Persona</Link>
           </div>
           <div className="flex items-center gap-6">
