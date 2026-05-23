@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -173,8 +174,8 @@ body {
   top: 0; left: 0;
   width: 100%; height: 100%;
   border-radius: 50%;
-  border: 1px solid rgba(0, 240, 255, 0.15);
-  box-shadow: 0 0 15px rgba(0, 240, 255, 0.05) inset;
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.15) inset, 0 0 15px rgba(0, 240, 255, 0.1);
 }
 
 .wireframe-ring:nth-child(1) { transform: rotateY(0deg); }
@@ -187,9 +188,10 @@ body {
 .wireframe-ring-h {
   position: absolute;
   border-radius: 50%;
-  border: 1px solid rgba(0, 240, 255, 0.15);
+  border: 1px solid rgba(0, 240, 255, 0.25);
   top: 50%; left: 50%;
   transform: translate(-50%, -50%) rotateX(90deg);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.15) inset, 0 0 15px rgba(0, 240, 255, 0.1);
 }
 
 .wireframe-ring-h.r1 { width: 100%; height: 100%; }
