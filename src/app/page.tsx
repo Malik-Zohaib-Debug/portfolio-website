@@ -1092,7 +1092,7 @@ export default function Home() {
                 University of Management and Technology
               </div>
               <h3 className="font-display-lg font-bold text-[22px] text-text-primary group-hover:text-accent-orange transition-colors mb-4">
-                B.S Software Engineering
+                BS Software Engineering
               </h3>
 
               <p className="font-body-base text-[14px] text-text-muted font-light leading-relaxed max-w-[760px]">
