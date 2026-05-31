@@ -2,16 +2,16 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { 
-  Terminal as TerminalIcon, 
-  Cpu, 
-  Layers,  
-  Atom,  
-  Send, 
-  ArrowRight,  
-  Activity, 
-  CheckCircle2, 
-  Server, 
+import {
+  Terminal as TerminalIcon,
+  Cpu,
+  Layers,
+  Atom,
+  Send,
+  ArrowRight,
+  Activity,
+  CheckCircle2,
+  Server,
   Database,
   ArrowUpRight,
 } from "lucide-react";
@@ -23,17 +23,17 @@ interface Segment {
 }
 
 // --- Typewriter Component ---
-function TypewriterText({ 
-  segments, 
-  speed = 50, 
-  delay = 0, 
-  cursorColor = "bg-accent-chartreuse" 
-}: { 
-  segments: Segment[]; 
-  speed?: number; 
-  delay?: number; 
-  cursorColor?: string; 
- }) {
+function TypewriterText({
+  segments,
+  speed = 50,
+  delay = 0,
+  cursorColor = "bg-accent-chartreuse",
+}: {
+  segments: Segment[];
+  speed?: number;
+  delay?: number;
+  cursorColor?: string;
+}) {
   const [charIndex, setCharIndex] = useState(0);
   const [isStarted, setIsStarted] = useState(false);
 
@@ -63,20 +63,28 @@ function TypewriterText({
   return (
     <>
       {chars.slice(0, charIndex).map((c, i) => (
-        <span key={i} className={c.className}>{c.char}</span>
+        <span key={i} className={c.className}>
+          {c.char}
+        </span>
       ))}
       <motion.span
         animate={{ opacity: [1, 0] }}
         transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
         className={`inline-block w-[0.2em] h-[0.9em] align-middle ml-1.5 ${cursorColor}`}
-        style={{ marginBottom: '0.1em' }}
+        style={{ marginBottom: "0.1em" }}
       />
     </>
   );
 }
 
 // --- Animated Stats Counter Component ---
-function Counter({ value, duration = 1.5 }: { value: string; duration?: number }) {
+function Counter({
+  value,
+  duration = 1.5,
+}: {
+  value: string;
+  duration?: number;
+}) {
   const [count, setCount] = useState("");
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
@@ -87,7 +95,7 @@ function Counter({ value, duration = 1.5 }: { value: string; duration?: number }
     // Parse the numeric part and non-numeric suffixes (e.g., "5+", "<1s", "40%")
     const numericPart = value.replace(/[^0-9]/g, "");
     const suffix = value.replace(/[0-9]/g, "");
-    
+
     if (!numericPart) {
       setCount(value);
       return;
@@ -96,7 +104,7 @@ function Counter({ value, duration = 1.5 }: { value: string; duration?: number }
     const targetVal = parseInt(numericPart, 10);
     let start = 0;
     const increment = targetVal / (duration * 60); // 60 FPS
-    
+
     let current = 0;
     const timer = setInterval(() => {
       current += increment;
@@ -142,10 +150,17 @@ interface Project {
 
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState<string>("All");
-  const [formState, setFormState] = useState({ name: "", email: "", message: "" });
+  const [formState, setFormState] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formFeedback, setFormFeedback] = useState<{ type: "success" | "error" | null; msg: string }>({ type: null, msg: "" });
-  
+  const [formFeedback, setFormFeedback] = useState<{
+    type: "success" | "error" | null;
+    msg: string;
+  }>({ type: null, msg: "" });
+
   // Interactive Modal State
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
@@ -171,7 +186,11 @@ export default function Home() {
 
   const revealVariants = {
     hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as any } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as any },
+    },
   };
 
   // --- Project Data ---
@@ -186,12 +205,12 @@ export default function Home() {
         "Built a CMS backend powering a mobile app for creating virtual stores with custom themes, layouts, and 3D product placements.",
         "Developed a multi-step product digitalization and approval workflow (manual entry, bundle uploads, Walmart API validation, 3D model integration, publishing/ unpublishing).",
         "Implemented admin/ reviewer workflows, role-based permission management, and automated notifications for store/ product approvals.",
-        "Set up CI/ CD pipelines on GCP (bucket + CDN + load balancer) to streamline deployments and optimize frontend performance."
+        "Set up CI/ CD pipelines on GCP (bucket + CDN + load balancer) to streamline deployments and optimize frontend performance.",
       ],
       metrics: [
         { val: "3D", lbl: "Digitalization" },
         { val: "GCP", lbl: "Deployments" },
-        { val: "Multi", lbl: "Role Approvals" }
+        { val: "Multi", lbl: "Role Approvals" },
       ],
       tags: [
         { text: "TypeScript" },
@@ -199,8 +218,8 @@ export default function Home() {
         { text: "PostgreSQL" },
         { text: "Firebase" },
         { text: "Stripe", theme: "blue" },
-        { text: "GCP", theme: "orange" }
-      ]
+        { text: "GCP", theme: "orange" },
+      ],
     },
     {
       id: "emperia",
@@ -213,7 +232,7 @@ export default function Home() {
         "Implemented dynamic plan management to allocate bandwidth and storage per subscription tier, with real-time usage alerts.",
         "Integrated Stripe for secure payments and seamless plan upgrades.",
         "Built the Community Experience feature, enabling users to share, explore, and engage with others' virtual experiences.",
-        "Collaborated on a scalable backend (DRF, Postgres) deployed on AWS EC2, with usage tracking via M3ter."
+        "Collaborated on a scalable backend (DRF, Postgres) deployed on AWS EC2, with usage tracking via M3ter.",
       ],
       tags: [
         { text: "React" },
@@ -222,12 +241,12 @@ export default function Home() {
         { text: "Stripe", theme: "blue" },
         { text: "AWS EC2", theme: "blue" },
         { text: "PostgreSQL" },
-        { text: "M3ter", theme: "orange" }
+        { text: "M3ter", theme: "orange" },
       ],
       featured: true,
       featuredStat: "3D",
       featuredStatLbl: "Virtual World Management",
-      featuredDetail: "Multi-org · Stripe · Real-time alerts"
+      featuredDetail: "Multi-org · Stripe · Real-time alerts",
     },
     {
       id: "directed-ira",
@@ -240,20 +259,20 @@ export default function Home() {
         "Improved overall platform security by approximately 40% by implementing OWASP best practices, including secure authentication, authorization, and data protection mechanisms.",
         "Integrated Alloy identity verification to reduce fraudulent and spam account creation by 15%, resulting in a 10% decrease in suspicious activities.",
         "Strengthened backend and server security by implementing CSRF and XSS protection, HTTP security headers (Helmet), session management, and secure cookies.",
-        "Designed and implemented new user-facing forms and backend workflows, contributing to a 20% improvement in system scalability and performance."
+        "Designed and implemented new user-facing forms and backend workflows, contributing to a 20% improvement in system scalability and performance.",
       ],
       metrics: [
         { val: "40%", lbl: "security boost" },
         { val: "15%", lbl: "fraud reduction" },
-        { val: "20%", lbl: "perf gain" }
+        { val: "20%", lbl: "perf gain" },
       ],
       tags: [
         { text: "React" },
         { text: "NestJS" },
         { text: "PostgreSQL", theme: "blue" },
         { text: "AWS", theme: "orange" },
-        { text: "Datadog" }
-      ]
+        { text: "Datadog" },
+      ],
     },
     {
       id: "dark-weather",
@@ -265,20 +284,20 @@ export default function Home() {
         "Optimized infrastructure of a weather application by converting APIs and server to asynchronous, reducing response time from 2-3 seconds to under 1 second.",
         "Built a fully optimized AI Weather Assistant using the OpenAI SDK and vector databases to maintain personalized conversational context.",
         "Implemented an agentic architecture, defining specialized tools to dynamically handle user prompts and provide accurate weather, air quality, and alert information.",
-        "Revamped the legacy weather UI into a modern, responsive interface using React and TailwindCSS, improving usability and visual appeal."
+        "Revamped the legacy weather UI into a modern, responsive interface using React and TailwindCSS, improving usability and visual appeal.",
       ],
       metrics: [
         { val: "<1s", lbl: "response time" },
         { val: "Agent", lbl: "AI Assist" },
-        { val: "Async", lbl: "API Engine" }
+        { val: "Async", lbl: "API Engine" },
       ],
       tags: [
         { text: "Python" },
         { text: "Django DRF" },
         { text: "OpenAI SDK", theme: "blue" },
         { text: "Qdrant", theme: "blue" },
-        { text: "React" }
-      ]
+        { text: "React" },
+      ],
     },
     {
       id: "hai-sensei",
@@ -293,24 +312,24 @@ export default function Home() {
         "Implemented contextual prompt chaining to improve response accuracy, workflow continuity, and report quality.",
         "Built scalable backend services for transcript processing, workflow execution, and AI-generated behavioral insights.",
         "Optimized data flow and structured output handling for reliable AI report generation.",
-        "Collaborated on an AI-driven analytics platform focused on extracting actionable behavioral intelligence from conversations and meetings."
+        "Collaborated on an AI-driven analytics platform focused on extracting actionable behavioral intelligence from conversations and meetings.",
       ],
       tags: [
         { text: "TypeScript" },
         { text: "NestJS" },
         { text: "LLM Chaining", theme: "blue" },
         { text: "PostgreSQL", theme: "blue" },
-        { text: "AWS", theme: "orange" }
+        { text: "AWS", theme: "orange" },
       ],
       featured: true,
       featuredStat: "27",
       featuredStatLbl: "Chained LLM Workflow Stages",
-      featuredDetail: "Structured JSON · Behavioral AI · Meetings"
-    }
+      featuredDetail: "Structured JSON · Behavioral AI · Meetings",
+    },
   ];
 
   // Filters projects based on selected active category tab
-  const filteredProjects = projects.filter(proj => {
+  const filteredProjects = projects.filter((proj) => {
     if (activeFilter === "All") return true;
     if (activeFilter === "AI / ML") return proj.category === "ai";
     if (activeFilter === "Full Stack") return proj.category === "fullstack";
@@ -320,9 +339,11 @@ export default function Home() {
   });
 
   // Handles form inputs updates
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
-    setFormState(prev => ({ ...prev, [name]: value }));
+    setFormState((prev) => ({ ...prev, [name]: value }));
   };
 
   // Submits form with mock/interactive timing
@@ -340,7 +361,7 @@ export default function Home() {
       setIsSubmitting(false);
       setFormFeedback({
         type: "success",
-        msg: "Message sent successfully! Zohaib will get back to you shortly."
+        msg: "Message sent successfully! Zohaib will get back to you shortly.",
       });
       setFormState({ name: "", email: "", message: "" });
     }, 1800);
@@ -348,12 +369,11 @@ export default function Home() {
 
   return (
     <main className="md:ml-20 min-h-screen relative overflow-hidden bg-bg-dark">
-      <section 
-        className="min-h-screen flex items-center justify-center pt-24 pb-16 px-6 md:px-16 max-w-[1200px] mx-auto relative z-10 overflow-hidden" 
+      <section
+        className="min-h-screen flex items-center justify-center pt-24 pb-16 px-6 md:px-16 max-w-[1200px] mx-auto relative z-10 overflow-hidden"
         id="hero"
       >
-
-        <motion.div 
+        <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -361,7 +381,10 @@ export default function Home() {
           className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center w-full relative z-10"
         >
           {/* Hero Content */}
-          <motion.div variants={revealVariants} className="lg:col-span-7 flex flex-col items-start">
+          <motion.div
+            variants={revealVariants}
+            className="lg:col-span-7 flex flex-col items-start"
+          >
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 bg-tag-bg border border-accent-chartreuse/20 rounded-full mb-6 glow-chartreuse transition-shadow duration-500">
               <span className="w-2.5 h-2.5 rounded-full bg-accent-chartreuse animate-pulse shadow-[0_0_8px_#C8F05A]"></span>
               <span className="font-code-sm text-[11px] tracking-[0.08em] font-medium text-accent-chartreuse uppercase">
@@ -382,18 +405,19 @@ export default function Home() {
             </div>
 
             <p className="font-body-base text-[17px] md:text-[18px] text-text-muted font-light leading-relaxed max-w-[540px] mb-8">
-              I build the intelligence layer — from scalable full-stack systems to LLM pipelines and agentic AI. Production-grade, always.
+              I build the intelligence layer — from scalable full-stack systems
+              to LLM pipelines and agentic AI. Production-grade, always.
             </p>
 
             <div className="flex flex-wrap gap-4 mb-10 w-full sm:w-auto">
-              <a 
-                href="#work" 
+              <a
+                href="#work"
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-accent-chartreuse text-bg-dark font-display-lg font-bold text-[14px] rounded hover:opacity-90 transition-all duration-300 transform hover:-translate-y-1 active:scale-95 shadow-[0_4px_20px_rgba(200,240,90,0.25)] glow-chartreuse w-full sm:w-auto text-center"
               >
                 view projects <ArrowRight size={15} />
               </a>
-              <a 
-                href="#contact" 
+              <a
+                href="#contact"
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-transparent text-text-primary border border-border-medium font-display-lg font-bold text-[14px] rounded hover:bg-white/5 transition-all duration-300 transform hover:-translate-y-1 active:scale-95 w-full sm:w-auto text-center"
               >
                 get in touch
@@ -401,38 +425,63 @@ export default function Home() {
             </div>
 
             <div className="flex items-center gap-6">
-              <a 
-                href="https://github.com/Malik-Zohaib-Debug" 
-                target="_blank" 
+              <a
+                href="https://github.com/Malik-Zohaib-Debug"
+                target="_blank"
                 rel="noreferrer"
                 className="font-code-sm text-[12px] text-text-muted hover:text-text-primary border-b border-transparent hover:border-text-primary transition-all duration-300 pb-0.5 flex items-center gap-1.5 group"
               >
-                <svg className="w-3.5 h-3.5 fill-current group-hover:scale-110 transition-transform" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.416-4.041-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg> GitHub
+                <svg
+                  className="w-3.5 h-3.5 fill-current group-hover:scale-110 transition-transform"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.416-4.041-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>{" "}
+                GitHub
               </a>
-              <a 
-                href="https://linkedin.com/in/zohaib-zahid-malik" 
-                target="_blank" 
+              <a
+                href="https://linkedin.com/in/zohaib-zahid-malik"
+                target="_blank"
                 rel="noreferrer"
                 className="font-code-sm text-[12px] text-text-muted hover:text-text-primary border-b border-transparent hover:border-text-primary transition-all duration-300 pb-0.5 flex items-center gap-1.5 group"
               >
-                <svg className="w-3.5 h-3.5 fill-current group-hover:scale-110 transition-transform" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg> LinkedIn
+                <svg
+                  className="w-3.5 h-3.5 fill-current group-hover:scale-110 transition-transform"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>{" "}
+                LinkedIn
               </a>
-              <a 
-                href="mailto:malikzohaibzahid78@gmail.com" 
+              <a
+                href="mailto:malikzohaibzahid78@gmail.com"
                 className="font-code-sm text-[12px] text-text-muted hover:text-text-primary border-b border-transparent hover:border-text-primary transition-all duration-300 pb-0.5 flex items-center gap-1.5 group"
               >
-                <svg className="w-3.5 h-3.5 stroke-current fill-none group-hover:scale-110 transition-transform" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> Email
+                <svg
+                  className="w-3.5 h-3.5 stroke-current fill-none group-hover:scale-110 transition-transform"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  viewBox="0 0 24 24"
+                >
+                  <rect width="20" height="16" x="2" y="4" rx="2" />
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                </svg>{" "}
+                Email
               </a>
             </div>
           </motion.div>
 
           {/* Engineer Status Card */}
-          <motion.div variants={revealVariants} className="lg:col-span-5 relative">
+          <motion.div
+            variants={revealVariants}
+            className="lg:col-span-5 relative"
+          >
             <div className="absolute inset-0 bg-gradient-to-tr from-accent-chartreuse/10 via-transparent to-accent-purple/10 rounded-lg blur-[20px] opacity-70"></div>
-            
+
             <div className="glass-panel p-6 sm:p-8 rounded-lg relative overflow-hidden border border-border-medium shadow-2xl group hover:border-accent-chartreuse/30 transition-all duration-500">
               <div className="absolute top-0 right-0 w-32 h-32 bg-accent-chartreuse/5 rounded-full blur-3xl pointer-events-none group-hover:bg-accent-chartreuse/10 transition-colors"></div>
-              
+
               {/* Card Annotation Badges */}
               <div className="absolute -top-1 right-8 bg-[#1A1A2E] border border-dashed border-accent-purple text-accent-purple font-code-sm text-[9px] px-2.5 py-0.5 rounded shadow-lg tracking-wider uppercase">
                 status card
@@ -450,35 +499,45 @@ export default function Home() {
 
               <div className="space-y-4">
                 <div className="flex justify-between items-end pb-3 border-b border-border-dim group/row">
-                  <span className="text-[13px] text-text-muted group-hover/row:text-text-primary transition-colors">Experience</span>
+                  <span className="text-[13px] text-text-muted group-hover/row:text-text-primary transition-colors">
+                    Experience
+                  </span>
                   <span className="font-display-lg font-bold text-[16px] text-accent-chartreuse drop-shadow-[0_0_8px_rgba(200,240,90,0.2)]">
                     <Counter value="5+ years" />
                   </span>
                 </div>
 
                 <div className="flex justify-between items-end pb-3 border-b border-border-dim group/row">
-                  <span className="text-[13px] text-text-muted group-hover/row:text-text-primary transition-colors">Current Role</span>
+                  <span className="text-[13px] text-text-muted group-hover/row:text-text-primary transition-colors">
+                    Current Role
+                  </span>
                   <span className="font-body-base text-[13px] text-text-primary font-medium">
                     SWE @ Directed Trust
                   </span>
                 </div>
 
                 <div className="flex justify-between items-end pb-3 border-b border-border-dim group/row">
-                  <span className="text-[13px] text-text-muted group-hover/row:text-text-primary transition-colors">Location</span>
+                  <span className="text-[13px] text-text-muted group-hover/row:text-text-primary transition-colors">
+                    Location
+                  </span>
                   <span className="font-body-base text-[13px] text-text-primary font-medium">
                     Lahore, PK · Remote
                   </span>
                 </div>
 
                 <div className="flex justify-between items-end pb-3 border-b border-border-dim group/row">
-                  <span className="text-[13px] text-text-muted group-hover/row:text-text-primary transition-colors">Focus</span>
+                  <span className="text-[13px] text-text-muted group-hover/row:text-text-primary transition-colors">
+                    Focus
+                  </span>
                   <span className="font-display-lg font-bold text-[14px] text-text-primary">
                     AI/ML · Full Stack
                   </span>
                 </div>
 
                 <div className="flex justify-between items-end group/row">
-                  <span className="text-[13px] text-text-muted group-hover/row:text-text-primary transition-colors">Status</span>
+                  <span className="text-[13px] text-text-muted group-hover/row:text-text-primary transition-colors">
+                    Status
+                  </span>
                   <span className="font-code-sm text-[12px] text-accent-chartreuse font-medium flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent-chartreuse animate-pulse"></span>
                     open to work
@@ -494,18 +553,24 @@ export default function Home() {
                 <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/30 border border-yellow-500/20"></div>
                 <div className="w-2.5 h-2.5 rounded-full bg-green-500/30 border border-green-500/20"></div>
               </div>
-              <TypewriterText 
+              <TypewriterText
                 segments={[
                   { text: "const ", className: "text-purple-400" },
-                  { text: "engineer = {\n  role: ", className: "text-text-primary" },
-                  { text: "'AI Engineer'", className: "text-accent-chartreuse" },
+                  {
+                    text: "engineer = {\n  role: ",
+                    className: "text-text-primary",
+                  },
+                  {
+                    text: "'AI Engineer'",
+                    className: "text-accent-chartreuse",
+                  },
                   { text: ",\n  stack: [", className: "text-text-primary" },
                   { text: "'Next.js'", className: "text-accent-purple" },
                   { text: ", ", className: "text-text-primary" },
                   { text: "'LangChain'", className: "text-accent-purple" },
                   { text: "],\n  status: ", className: "text-text-primary" },
                   { text: "'Deploying...'", className: "text-accent-orange" },
-                  { text: "\n};", className: "text-text-primary" }
+                  { text: "\n};", className: "text-text-primary" },
                 ]}
                 speed={25}
                 delay={1500}
@@ -522,15 +587,27 @@ export default function Home() {
           {[1, 2].map((loopIdx) => (
             <div key={loopIdx} className="flex gap-8 items-center">
               {[
-                "React", "TypeScript", "Next.js", "NestJS", "Python", 
-                "LangChain", "OpenAI SDK", "PostgreSQL", "AWS", 
-                "Docker", "YOLOv11", "PyTorch", "Agentic AI"
+                "React",
+                "TypeScript",
+                "Next.js",
+                "NestJS",
+                "Python",
+                "LangChain",
+                "OpenAI SDK",
+                "PostgreSQL",
+                "AWS",
+                "Docker",
+                "YOLOv11",
+                "PyTorch",
+                "Agentic AI",
               ].map((tech, techIdx) => (
                 <div key={techIdx} className="flex items-center gap-8">
                   <span className="font-code-sm text-[12px] tracking-[0.08em] font-medium text-text-muted hover:text-accent-chartreuse transition-colors uppercase">
                     {tech}
                   </span>
-                  <span className="text-border-medium font-bold text-[10px]">◆</span>
+                  <span className="text-border-medium font-bold text-[10px]">
+                    ◆
+                  </span>
                 </div>
               ))}
             </div>
@@ -539,24 +616,53 @@ export default function Home() {
       </div>
 
       {/* ==================== ABOUT SECTION ==================== */}
-      <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto relative z-10" id="about">
+      <section
+        className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto relative z-10"
+        id="about"
+      >
         <div className="section-eyebrow">01 — about</div>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <div className="lg:col-span-7 flex flex-col">
             <h2 className="font-display-lg text-[32px] sm:text-[42px] lg:text-[48px] font-extrabold text-text-primary leading-[1.1] mb-8 uppercase">
-              I don&#39;t just build features.<br />
-              <span className="text-accent-chartreuse">I engineer systems.</span>
+              I don&#39;t just build features.
+              <br />
+              <span className="text-accent-chartreuse">
+                I engineer systems.
+              </span>
             </h2>
             <div className="space-y-6 font-body-base text-[16px] text-text-muted font-light leading-relaxed max-w-[620px]">
               <p>
-                Five years building software that actually ships — from responsive React frontends to backend architectures handling real production load. My work sits at the intersection of <strong className="text-text-primary font-semibold">full-stack engineering</strong> and <strong className="text-accent-chartreuse font-semibold">applied AI</strong>.
+                Five years building software that actually ships — from
+                responsive React frontends to backend architectures handling
+                real production load. My work sits at the intersection of{" "}
+                <strong className="text-text-primary font-semibold">
+                  full-stack engineering
+                </strong>{" "}
+                and{" "}
+                <strong className="text-accent-chartreuse font-semibold">
+                  applied AI
+                </strong>
+                .
               </p>
               <p>
-                I care about the code that comes after mine: typed, documented, built for the engineer who inherits it. Whether it&#39;s an LLM workflow system, a 3D virtual store CMS, or a fintech compliance platform — I treat every system as if it has to outlive me.
+                I care about the code that comes after mine: typed, documented,
+                built for the engineer who inherits it. Whether it&#39;s an LLM
+                workflow system, a 3D virtual store CMS, or a fintech compliance
+                platform — I treat every system as if it has to outlive me.
               </p>
               <p>
-                Currently at <strong className="text-text-primary font-medium">Directed Trust Co.</strong> in Phoenix (remote), building a secure IRA platform. Previously at <strong className="text-text-primary font-medium">Geekybugs</strong>, where I led frontend architecture and delivered production AI features.
+                Currently at{" "}
+                <strong className="text-text-primary font-medium">
+                  Directed Trust Co.
+                </strong>{" "}
+                in Phoenix (remote), building a secure IRA platform. Previously
+                at{" "}
+                <strong className="text-text-primary font-medium">
+                  Geekybugs
+                </strong>
+                , where I led frontend architecture and delivered production AI
+                features.
               </p>
             </div>
           </div>
@@ -606,40 +712,46 @@ export default function Home() {
       <hr className="border-t border-border-dim max-w-[1200px] mx-auto" />
 
       {/* ==================== PROJECTS WORK SECTION ==================== */}
-      <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto relative z-10" id="work">
+      <section
+        className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto relative z-10"
+        id="work"
+      >
         <div className="section-eyebrow">02 — selected work</div>
-        
+
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
             <h2 className="font-display-lg text-[36px] sm:text-[48px] font-extrabold text-text-primary leading-none uppercase mb-4">
               Projects
             </h2>
             <p className="font-body-base text-[16px] text-text-muted font-light max-w-[540px]">
-              Real systems, shipped to production. Click any card to explore full highlights.
+              Real systems, shipped to production. Click any card to explore
+              full highlights.
             </p>
           </div>
 
           {/* Filtering Buttons */}
           <div className="flex flex-wrap gap-2.5">
-            {["All", "AI / ML", "Full Stack", "Backend", "Open Source"].map((filter) => (
-              <button
-                key={filter}
-                onClick={() => setActiveFilter(filter)}
-                className={`px-4.5 py-1.5 rounded-full font-code-sm text-[12px] border transition-all duration-300 cursor-pointer ${
-                  activeFilter === filter
-                    ? "bg-tag-bg border-accent-chartreuse/40 text-accent-chartreuse font-medium shadow-[0_0_12px_rgba(200,240,90,0.15)]"
-                    : "bg-transparent border-border-medium text-text-muted hover:border-text-primary hover:text-text-primary"
-                }`}
-              >
-                {filter}
-              </button>
-            ))}
+            {["All", "AI / ML", "Full Stack", "Backend", "Open Source"].map(
+              (filter) => (
+                <button
+                  key={filter}
+                  onClick={() => setActiveFilter(filter)}
+                  className={`px-4.5 py-1.5 rounded-full font-code-sm text-[12px] border transition-all duration-300 cursor-pointer ${
+                    activeFilter === filter
+                      ? "bg-tag-bg border-accent-chartreuse/40 text-accent-chartreuse font-medium shadow-[0_0_12px_rgba(200,240,90,0.15)]"
+                      : "bg-transparent border-border-medium text-text-muted hover:border-text-primary hover:text-text-primary"
+                  }`}
+                >
+                  {filter}
+                </button>
+              ),
+            )}
           </div>
         </div>
 
         {/* Project Grid with AnimatePresence */}
-        <motion.div 
-          layout 
+        <motion.div
+          layout
           className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch"
         >
           <AnimatePresence mode="popLayout">
@@ -659,7 +771,7 @@ export default function Home() {
                   >
                     {/* Top border glow reveal on card hover */}
                     <div className="absolute top-0 left-0 right-0 h-[2px] bg-accent-chartreuse transform scale-x-0 group-hover:scale-x-100 transform-origin-left transition-transform duration-500"></div>
-                    
+
                     <div className="absolute -top-1 right-8 bg-[#1A1A2E] border border-dashed border-accent-chartreuse text-accent-chartreuse font-code-sm text-[9px] px-2.5 py-0.5 rounded shadow-lg tracking-wider uppercase">
                       featured / click to expand
                     </div>
@@ -684,14 +796,14 @@ export default function Home() {
 
                       <div className="flex flex-wrap gap-2">
                         {proj.tags.map((tag, tagIdx) => (
-                          <span 
-                            key={tagIdx} 
+                          <span
+                            key={tagIdx}
                             className={`px-2.5 py-1 rounded text-[11px] font-code-sm tracking-wider ${
-                              tag.theme === "blue" 
-                                ? "bg-accent-purple/10 text-[#A89FFF]" 
+                              tag.theme === "blue"
+                                ? "bg-accent-purple/10 text-[#A89FFF]"
                                 : tag.theme === "orange"
-                                ? "bg-accent-orange/10 text-[#FF9D78]"
-                                : "bg-tag-bg text-accent-chartreuse"
+                                  ? "bg-accent-orange/10 text-[#FF9D78]"
+                                  : "bg-tag-bg text-accent-chartreuse"
                             }`}
                           >
                             {tag.text}
@@ -702,7 +814,7 @@ export default function Home() {
 
                     <div className="lg:col-span-5 bg-bg-tertiary border border-border-dim rounded flex items-center justify-center p-6 text-center relative overflow-hidden group-hover:border-accent-chartreuse/25 transition-all">
                       <div className="absolute inset-0 bg-gradient-to-br from-accent-chartreuse/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                      
+
                       <div className="relative z-10 flex flex-col items-center">
                         <div className="font-display-lg font-extrabold text-[56px] text-accent-chartreuse leading-none drop-shadow-[0_0_15px_rgba(200,240,90,0.15)] mb-2">
                           {proj.featuredStat}
@@ -732,7 +844,7 @@ export default function Home() {
                   >
                     {/* Top border glow reveal on card hover */}
                     <div className="absolute top-0 left-0 right-0 h-[2px] bg-accent-chartreuse transform scale-x-0 group-hover:scale-x-100 transform-origin-left transition-transform duration-500"></div>
-                    
+
                     <div className="absolute -top-1 right-8 bg-[#1A1A2E] border border-dashed border-accent-purple text-accent-purple font-code-sm text-[9px] px-2.5 py-0.5 rounded shadow-lg tracking-wider uppercase">
                       click to expand
                     </div>
@@ -746,11 +858,11 @@ export default function Home() {
                           <ArrowUpRight size={18} />
                         </span>
                       </div>
-                      
+
                       <h3 className="font-display-lg font-bold text-[20px] text-text-primary group-hover:text-accent-chartreuse transition-colors mb-3">
                         {proj.title}
                       </h3>
-                      
+
                       <p className="font-body-base text-[14px] text-text-muted font-light leading-relaxed mb-6">
                         {proj.desc}
                       </p>
@@ -775,14 +887,14 @@ export default function Home() {
 
                       <div className="flex flex-wrap gap-2">
                         {proj.tags.map((tag, tagIdx) => (
-                          <span 
-                            key={tagIdx} 
+                          <span
+                            key={tagIdx}
                             className={`px-2.5 py-1 rounded text-[11px] font-code-sm tracking-wider ${
-                              tag.theme === "blue" 
-                                ? "bg-accent-purple/10 text-[#A89FFF]" 
+                              tag.theme === "blue"
+                                ? "bg-accent-purple/10 text-[#A89FFF]"
                                 : tag.theme === "orange"
-                                ? "bg-accent-orange/10 text-[#FF9D78]"
-                                : "bg-tag-bg text-accent-chartreuse"
+                                  ? "bg-accent-orange/10 text-[#FF9D78]"
+                                  : "bg-tag-bg text-accent-chartreuse"
                             }`}
                           >
                             {tag.text}
@@ -801,15 +913,17 @@ export default function Home() {
       <hr className="border-t border-border-dim max-w-[1200px] mx-auto" />
 
       {/* ==================== EXPERIENCE (TIMELINE) SECTION ==================== */}
-      <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto relative z-10" id="experience">
+      <section
+        className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto relative z-10"
+        id="experience"
+      >
         <div className="section-eyebrow">03 — experience</div>
-        
+
         <h2 className="font-display-lg text-[36px] sm:text-[48px] font-extrabold text-text-primary leading-none uppercase mb-16">
           Career Path
         </h2>
 
         <div className="relative pl-0 md:pl-32 flex flex-col gap-0 border-l border-border-dim">
-          
           {/* Position Node 1 */}
           <div className="relative pb-16 pl-6 md:pl-10 group">
             {/* Pulsing tree node connector indicator */}
@@ -835,29 +949,53 @@ export default function Home() {
               <h3 className="font-display-lg font-bold text-[22px] text-text-primary group-hover:text-accent-chartreuse transition-colors mb-4">
                 Software Engineer
               </h3>
-              
+
               <ul className="space-y-2.5 max-w-[760px] font-body-base text-[14px] text-text-muted font-light mb-6 list-none">
                 <li className="pl-5 relative leading-relaxed">
-                  <span className="absolute left-0 text-accent-chartreuse font-bold">→</span>
-                  Built a secure, scalable self-directed IRA platform enabling users to manage alternative investments with regulatory compliance.
+                  <span className="absolute left-0 text-accent-chartreuse font-bold">
+                    →
+                  </span>
+                  Built a secure, scalable self-directed IRA platform enabling
+                  users to manage alternative investments with regulatory
+                  compliance.
                 </li>
                 <li className="pl-5 relative leading-relaxed">
-                  <span className="absolute left-0 text-accent-chartreuse font-bold">→</span>
-                  Improved platform security ~40% via OWASP hardening — auth, authorization, and data protection.
+                  <span className="absolute left-0 text-accent-chartreuse font-bold">
+                    →
+                  </span>
+                  Improved platform security ~40% via OWASP hardening — auth,
+                  authorization, and data protection.
                 </li>
                 <li className="pl-5 relative leading-relaxed">
-                  <span className="absolute left-0 text-accent-chartreuse font-bold">→</span>
-                  Integrated Alloy identity verification, cutting fraudulent account creation by 15%.
+                  <span className="absolute left-0 text-accent-chartreuse font-bold">
+                    →
+                  </span>
+                  Integrated Alloy identity verification, cutting fraudulent
+                  account creation by 15%.
                 </li>
                 <li className="pl-5 relative leading-relaxed">
-                  <span className="absolute left-0 text-accent-chartreuse font-bold">→</span>
-                  Implemented CSRF/XSS protection, Helmet headers, session management, and secure cookies.
+                  <span className="absolute left-0 text-accent-chartreuse font-bold">
+                    →
+                  </span>
+                  Implemented CSRF/XSS protection, Helmet headers, session
+                  management, and secure cookies.
                 </li>
               </ul>
 
               <div className="flex flex-wrap gap-2">
-                {["React", "TypeScript", "NestJS", "PostgreSQL", "AWS", "Datadog", "Stripe"].map((tech) => (
-                  <span key={tech} className="px-2.5 py-1 bg-white/5 border border-border-dim rounded text-[11px] font-code-sm text-text-muted tracking-wide group-hover:border-accent-chartreuse/20 transition-all">
+                {[
+                  "React",
+                  "TypeScript",
+                  "NestJS",
+                  "PostgreSQL",
+                  "AWS",
+                  "Datadog",
+                  "Stripe",
+                ].map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-2.5 py-1 bg-white/5 border border-border-dim rounded text-[11px] font-code-sm text-text-muted tracking-wide group-hover:border-accent-chartreuse/20 transition-all"
+                  >
                     {tech}
                   </span>
                 ))}
@@ -887,32 +1025,49 @@ export default function Home() {
               <h3 className="font-display-lg font-bold text-[22px] text-text-primary group-hover:text-accent-purple transition-colors mb-4">
                 Associate Software Engineer
               </h3>
-              
+
               <ul className="space-y-2.5 max-w-[760px] font-body-base text-[14px] text-text-muted font-light mb-6 list-none">
                 <li className="pl-5 relative leading-relaxed">
-                  <span className="absolute left-0 text-accent-purple font-bold">→</span>
-                  Optimized application performance across frontend and backend — refactoring, state management, best practices.
+                  <span className="absolute left-0 text-accent-purple font-bold">
+                    →
+                  </span>
+                  Optimized application performance across frontend and backend
+                  — refactoring, state management, best practices.
                 </li>
                 <li className="pl-5 relative leading-relaxed">
-                  <span className="absolute left-0 text-accent-purple font-bold">→</span>
-                  Delivered pixel-perfect web apps migrated from legacy frontend views.
+                  <span className="absolute left-0 text-accent-purple font-bold">
+                    →
+                  </span>
+                  Delivered pixel-perfect web apps migrated from legacy frontend
+                  views.
                 </li>
                 <li className="pl-5 relative leading-relaxed">
-                  <span className="absolute left-0 text-accent-purple font-bold">→</span>
-                  Designed and consumed REST APIs with seamless frontend integration.
+                  <span className="absolute left-0 text-accent-purple font-bold">
+                    →
+                  </span>
+                  Designed and consumed REST APIs with seamless frontend
+                  integration.
                 </li>
                 <li className="pl-5 relative leading-relaxed">
-                  <span className="absolute left-0 text-accent-purple font-bold">→</span>
-                  Mentored junior interns and participated in code reviews and architecture discussions.
+                  <span className="absolute left-0 text-accent-purple font-bold">
+                    →
+                  </span>
+                  Mentored junior interns and participated in code reviews and
+                  architecture discussions.
                 </li>
               </ul>
 
               <div className="flex flex-wrap gap-2">
-                {["React", "Django DRF", "PostgreSQL", "AWS", "Docker"].map((tech) => (
-                  <span key={tech} className="px-2.5 py-1 bg-white/5 border border-border-dim rounded text-[11px] font-code-sm text-text-muted tracking-wide group-hover:border-accent-purple/20 transition-all">
-                    {tech}
-                  </span>
-                ))}
+                {["React", "Django DRF", "PostgreSQL", "AWS", "Docker"].map(
+                  (tech) => (
+                    <span
+                      key={tech}
+                      className="px-2.5 py-1 bg-white/5 border border-border-dim rounded text-[11px] font-code-sm text-text-muted tracking-wide group-hover:border-accent-purple/20 transition-all"
+                    >
+                      {tech}
+                    </span>
+                  ),
+                )}
               </div>
             </div>
           </div>
@@ -937,24 +1092,28 @@ export default function Home() {
                 University of Management and Technology
               </div>
               <h3 className="font-display-lg font-bold text-[22px] text-text-primary group-hover:text-accent-orange transition-colors mb-4">
-                B.Sc. Software Engineering
+                B.S Software Engineering
               </h3>
-              
+
               <p className="font-body-base text-[14px] text-text-muted font-light leading-relaxed max-w-[760px]">
-                Coursework: Object Oriented Programming, Data Structures &amp; Algorithms, Database Systems, Machine Learning, Deep Learning, and Information Security.
+                Coursework: Object Oriented Programming, Data Structures &amp;
+                Algorithms, Database Systems, Machine Learning, Deep Learning,
+                and Information Security.
               </p>
             </div>
           </div>
-
         </div>
       </section>
 
       <hr className="border-t border-border-dim max-w-[1200px] mx-auto" />
 
       {/* ==================== SKILLS (TECH STACK) SECTION ==================== */}
-      <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto relative z-10" id="skills">
+      <section
+        className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto relative z-10"
+        id="skills"
+      >
         <div className="section-eyebrow">04 — capabilities</div>
-        
+
         <h2 className="font-display-lg text-[36px] sm:text-[48px] font-extrabold text-text-primary leading-none uppercase mb-4">
           Tech Stack
         </h2>
@@ -966,7 +1125,10 @@ export default function Home() {
           {/* Group 1: Frontend */}
           <div className="glass-panel p-6 rounded border border-border-dim group hover:border-accent-chartreuse/30 shadow-md">
             <div className="flex items-center gap-2 mb-3">
-              <Atom size={18} className="text-accent-chartreuse animate-spin-slow" />
+              <Atom
+                size={18}
+                className="text-accent-chartreuse animate-spin-slow"
+              />
               <h3 className="font-display-lg font-bold text-[16px] text-text-primary">
                 Frontend
               </h3>
@@ -975,11 +1137,16 @@ export default function Home() {
               Interfaces that feel native
             </div>
             <div className="flex flex-wrap gap-1.5">
-              {["React", "Next.js", "TypeScript", "Tailwind CSS", "Redux"].map((s) => (
-                <span key={s} className="px-2 py-0.5.5 bg-tag-bg text-accent-chartreuse font-code-sm text-[11px] tracking-wider rounded border border-accent-chartreuse/10 group-hover:border-accent-chartreuse/25 transition-all">
-                  {s}
-                </span>
-              ))}
+              {["React", "Next.js", "TypeScript", "Tailwind CSS", "Redux"].map(
+                (s) => (
+                  <span
+                    key={s}
+                    className="px-2 py-0.5.5 bg-tag-bg text-accent-chartreuse font-code-sm text-[11px] tracking-wider rounded border border-accent-chartreuse/10 group-hover:border-accent-chartreuse/25 transition-all"
+                  >
+                    {s}
+                  </span>
+                ),
+              )}
             </div>
           </div>
 
@@ -995,11 +1162,16 @@ export default function Home() {
               APIs that scale
             </div>
             <div className="flex flex-wrap gap-1.5">
-              {["NestJS", "Node.js", "Express", "Django DRF", "ASP.Net"].map((s) => (
-                <span key={s} className="px-2 py-0.5 bg-accent-purple/5 text-[#A89FFF] font-code-sm text-[11px] tracking-wider rounded border border-accent-purple/10 group-hover:border-accent-purple/25 transition-all">
-                  {s}
-                </span>
-              ))}
+              {["NestJS", "Node.js", "Express", "Django DRF", "ASP.Net"].map(
+                (s) => (
+                  <span
+                    key={s}
+                    className="px-2 py-0.5 bg-accent-purple/5 text-[#A89FFF] font-code-sm text-[11px] tracking-wider rounded border border-accent-purple/10 group-hover:border-accent-purple/25 transition-all"
+                  >
+                    {s}
+                  </span>
+                ),
+              )}
             </div>
           </div>
 
@@ -1015,8 +1187,18 @@ export default function Home() {
               Intelligent systems
             </div>
             <div className="flex flex-wrap gap-1.5">
-              {["LangChain", "OpenAI SDK", "Agentic AI", "YOLOv11", "PyTorch", "HuggingFace"].map((s) => (
-                <span key={s} className="px-2 py-0.5 bg-accent-orange/5 text-[#FF9D78] font-code-sm text-[11px] tracking-wider rounded border border-accent-orange/10 group-hover:border-accent-orange/25 transition-all">
+              {[
+                "LangChain",
+                "OpenAI SDK",
+                "Agentic AI",
+                "YOLOv11",
+                "PyTorch",
+                "HuggingFace",
+              ].map((s) => (
+                <span
+                  key={s}
+                  className="px-2 py-0.5 bg-accent-orange/5 text-[#FF9D78] font-code-sm text-[11px] tracking-wider rounded border border-accent-orange/10 group-hover:border-accent-orange/25 transition-all"
+                >
                   {s}
                 </span>
               ))}
@@ -1035,11 +1217,16 @@ export default function Home() {
               Storage &amp; persistence
             </div>
             <div className="flex flex-wrap gap-1.5">
-              {["PostgreSQL", "MongoDB", "Redis", "Firebase", "Qdrant"].map((s) => (
-                <span key={s} className="px-2 py-0.5 bg-tag-bg text-accent-chartreuse font-code-sm text-[11px] tracking-wider rounded border border-accent-chartreuse/10 group-hover:border-accent-chartreuse/25 transition-all">
-                  {s}
-                </span>
-              ))}
+              {["PostgreSQL", "MongoDB", "Redis", "Firebase", "Qdrant"].map(
+                (s) => (
+                  <span
+                    key={s}
+                    className="px-2 py-0.5 bg-tag-bg text-accent-chartreuse font-code-sm text-[11px] tracking-wider rounded border border-accent-chartreuse/10 group-hover:border-accent-chartreuse/25 transition-all"
+                  >
+                    {s}
+                  </span>
+                ),
+              )}
             </div>
           </div>
 
@@ -1056,7 +1243,10 @@ export default function Home() {
             </div>
             <div className="flex flex-wrap gap-1.5">
               {["AWS S3/EC2", "GCP", "Docker", "CI/CD", "Nginx"].map((s) => (
-                <span key={s} className="px-2 py-0.5 bg-accent-purple/5 text-[#A89FFF] font-code-sm text-[11px] tracking-wider rounded border border-accent-purple/10 group-hover:border-accent-purple/25 transition-all">
+                <span
+                  key={s}
+                  className="px-2 py-0.5 bg-accent-purple/5 text-[#A89FFF] font-code-sm text-[11px] tracking-wider rounded border border-accent-purple/10 group-hover:border-accent-purple/25 transition-all"
+                >
                   {s}
                 </span>
               ))}
@@ -1076,7 +1266,10 @@ export default function Home() {
             </div>
             <div className="flex flex-wrap gap-1.5">
               {["JavaScript", "TypeScript", "Python", "C#"].map((s) => (
-                <span key={s} className="px-2 py-0.5 bg-accent-orange/5 text-[#FF9D78] font-code-sm text-[11px] tracking-wider rounded border border-accent-orange/10 group-hover:border-accent-orange/25 transition-all">
+                <span
+                  key={s}
+                  className="px-2 py-0.5 bg-accent-orange/5 text-[#FF9D78] font-code-sm text-[11px] tracking-wider rounded border border-accent-orange/10 group-hover:border-accent-orange/25 transition-all"
+                >
                   {s}
                 </span>
               ))}
@@ -1088,9 +1281,12 @@ export default function Home() {
       <hr className="border-t border-border-dim max-w-[1200px] mx-auto" />
 
       {/* ==================== THE PROCESS SECTION ==================== */}
-      <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto relative z-10" id="process">
+      <section
+        className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto relative z-10"
+        id="process"
+      >
         <div className="section-eyebrow">05 — how I work</div>
-        
+
         <h2 className="font-display-lg text-[36px] sm:text-[48px] font-extrabold text-text-primary leading-none uppercase mb-4">
           The Process
         </h2>
@@ -1100,14 +1296,34 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {[
-            { num: "01", name: "Understand", desc: "Clarify the real problem before touching code. Align on constraints, users, and outcomes." },
-            { num: "02", name: "Architect", desc: "Data models, API boundaries, component structure — designed before the first line." },
-            { num: "03", name: "Build", desc: "Typed, precise, tested. Clean enough for the engineer who comes next." },
-            { num: "04", name: "Integrate AI", desc: "LLM pipelines, vector stores, agentic tools — where they earn their place." },
-            { num: "05", name: "Ship", desc: "Deploy, monitor, iterate. Production is where real engineering begins." }
+            {
+              num: "01",
+              name: "Understand",
+              desc: "Clarify the real problem before touching code. Align on constraints, users, and outcomes.",
+            },
+            {
+              num: "02",
+              name: "Architect",
+              desc: "Data models, API boundaries, component structure — designed before the first line.",
+            },
+            {
+              num: "03",
+              name: "Build",
+              desc: "Typed, precise, tested. Clean enough for the engineer who comes next.",
+            },
+            {
+              num: "04",
+              name: "Integrate AI",
+              desc: "LLM pipelines, vector stores, agentic tools — where they earn their place.",
+            },
+            {
+              num: "05",
+              name: "Ship",
+              desc: "Deploy, monitor, iterate. Production is where real engineering begins.",
+            },
           ].map((step, idx) => (
-            <div 
-              key={step.num} 
+            <div
+              key={step.num}
               className="glass-panel p-6 rounded border border-border-dim relative group hover:border-accent-chartreuse/35 transition-all flex flex-col justify-between min-h-[220px]"
             >
               <div>
@@ -1136,20 +1352,40 @@ export default function Home() {
       {/* ==================== CERTIFICATIONS SECTION ==================== */}
       <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto relative z-10">
         <div className="section-eyebrow">06 — credentials</div>
-        
+
         <h2 className="font-display-lg text-[36px] sm:text-[48px] font-extrabold text-text-primary leading-none uppercase mb-16">
           Certifications
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
-            { icon: "🤖", name: "The Complete Agentic AI Engineering Course", issuer: "Ed Donner · Udemy · 2025", border: "hover:border-accent-chartreuse/30" },
-            { icon: "🧠", name: "LLM Engineering: Master AI, LLMs & Agents", issuer: "Ed Donner · Udemy", border: "hover:border-accent-purple/30" },
-            { icon: "⚙️", name: "Node.js, Express, MongoDB & More", issuer: "Jonas Schmedtmann · Udemy", border: "hover:border-accent-orange/30" },
-            { icon: "⚛️", name: "Web Development using ReactJS 2022", issuer: "Udemy", border: "hover:border-accent-chartreuse/30" }
+            {
+              icon: "🤖",
+              name: "The Complete Agentic AI Engineering Course",
+              issuer: "Ed Donner · Udemy · 2025",
+              border: "hover:border-accent-chartreuse/30",
+            },
+            {
+              icon: "🧠",
+              name: "LLM Engineering: Master AI, LLMs & Agents",
+              issuer: "Ed Donner · Udemy",
+              border: "hover:border-accent-purple/30",
+            },
+            {
+              icon: "⚙️",
+              name: "Node.js, Express, MongoDB & More",
+              issuer: "Jonas Schmedtmann · Udemy",
+              border: "hover:border-accent-orange/30",
+            },
+            {
+              icon: "⚛️",
+              name: "Web Development using ReactJS 2022",
+              issuer: "Udemy",
+              border: "hover:border-accent-chartreuse/30",
+            },
           ].map((cert, idx) => (
-            <div 
-              key={idx} 
+            <div
+              key={idx}
               className={`glass-panel p-5 rounded border border-border-dim flex items-start gap-4 transition-all duration-300 ${cert.border}`}
             >
               <span className="text-[26px] p-3 bg-white/5 border border-border-dim rounded flex items-center justify-center min-w-[56px] h-[56px]">
@@ -1171,81 +1407,117 @@ export default function Home() {
       <hr className="border-t border-border-dim max-w-[1200px] mx-auto" />
 
       {/* ==================== CONTACT SECTION ==================== */}
-      <section className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto relative z-10" id="contact">
+      <section
+        className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto relative z-10"
+        id="contact"
+      >
         <div className="section-eyebrow">07 — contact</div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
           <div className="lg:col-span-6 flex flex-col justify-between h-full">
             <div>
               <h2 className="font-display-lg text-[40px] sm:text-[52px] font-extrabold text-text-primary leading-[1.1] mb-6 uppercase">
-                Let&#39;s build<br />
-                <span className="text-accent-chartreuse drop-shadow-[0_0_12px_rgba(200,240,90,0.1)]">something real.</span>
+                Let&#39;s build
+                <br />
+                <span className="text-accent-chartreuse drop-shadow-[0_0_12px_rgba(200,240,90,0.1)]">
+                  something real.
+                </span>
               </h2>
               <p className="font-body-base text-[16px] text-text-muted font-light leading-relaxed max-w-[480px] mb-10">
-                Open to senior engineering roles, AI projects, and interesting problems. Remote-first. Based in Lahore, PKT (UTC+5). Usually responds within 24 hours.
+                Open to senior engineering roles, AI projects, and interesting
+                problems. Remote-first. Based in Lahore, PKT (UTC+5). Usually
+                responds within 24 hours.
               </p>
             </div>
 
             <div className="space-y-3.5 max-w-[440px]">
-              <a 
-                href="mailto:malikzohaibzahid78@gmail.com" 
+              <a
+                href="mailto:malikzohaibzahid78@gmail.com"
                 className="flex items-center justify-between p-4 rounded bg-card-dark border border-border-dim hover:border-accent-chartreuse/35 transition-all group"
               >
                 <div className="flex items-center gap-3">
                   <span className="text-[16px] text-accent-chartreuse">
-                    <svg className="w-4 h-4 stroke-current fill-none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    <svg
+                      className="w-4 h-4 stroke-current fill-none"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      viewBox="0 0 24 24"
+                    >
+                      <rect width="20" height="16" x="2" y="4" rx="2" />
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
                   </span>
-                  <span className="text-[14px] text-text-primary group-hover:text-accent-chartreuse transition-colors">Email</span>
+                  <span className="text-[14px] text-text-primary group-hover:text-accent-chartreuse transition-colors">
+                    Email
+                  </span>
                 </div>
                 <span className="font-code-sm text-[12px] text-text-muted">
                   malikzohaibzahid78@gmail.com
                 </span>
               </a>
 
-              <a 
-                href="https://linkedin.com/in/zohaib-zahid-malik" 
-                target="_blank" 
+              <a
+                href="https://linkedin.com/in/zohaib-zahid-malik"
+                target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-between p-4 rounded bg-card-dark border border-border-dim hover:border-accent-purple/35 transition-all group"
               >
                 <div className="flex items-center gap-3">
                   <span className="text-[16px] text-accent-purple">
-                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
                   </span>
-                  <span className="text-[14px] text-text-primary group-hover:text-accent-purple transition-colors">LinkedIn</span>
+                  <span className="text-[14px] text-text-primary group-hover:text-accent-purple transition-colors">
+                    LinkedIn
+                  </span>
                 </div>
                 <span className="font-code-sm text-[12px] text-text-muted">
                   zohaib-zahid-malik
                 </span>
               </a>
 
-              <a 
-                href="https://github.com/Malik-Zohaib-Debug" 
-                target="_blank" 
+              <a
+                href="https://github.com/Malik-Zohaib-Debug"
+                target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-between p-4 rounded bg-card-dark border border-border-dim hover:border-accent-orange/35 transition-all group"
               >
                 <div className="flex items-center gap-3">
                   <span className="text-[16px] text-accent-orange">
-                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.416-4.041-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.416-4.041-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
                   </span>
-                  <span className="text-[14px] text-text-primary group-hover:text-accent-orange transition-colors">GitHub</span>
+                  <span className="text-[14px] text-text-primary group-hover:text-accent-orange transition-colors">
+                    GitHub
+                  </span>
                 </div>
                 <span className="font-code-sm text-[12px] text-text-muted">
                   Malik-Zohaib-Debug
                 </span>
               </a>
 
-              <a 
-                href="tel:+923094382049" 
+              <a
+                href="tel:+923094382049"
                 className="flex items-center justify-between p-4 rounded bg-card-dark border border-border-dim hover:border-accent-chartreuse/35 transition-all group"
               >
                 <div className="flex items-center gap-3">
                   <span className="text-[16px] text-accent-chartreuse">
-                    <svg className="w-4 h-4 stroke-current fill-none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <svg
+                      className="w-4 h-4 stroke-current fill-none"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
                   </span>
-                  <span className="text-[14px] text-text-primary group-hover:text-accent-chartreuse transition-colors">Phone / WhatsApp</span>
+                  <span className="text-[14px] text-text-primary group-hover:text-accent-chartreuse transition-colors">
+                    Phone / WhatsApp
+                  </span>
                 </div>
                 <span className="font-code-sm text-[12px] text-text-muted">
                   +92 309 438 2049
@@ -1262,8 +1534,8 @@ export default function Home() {
                   <label className="font-code-sm text-[11px] text-text-muted tracking-widest uppercase mb-2">
                     Name
                   </label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     name="name"
                     value={formState.name}
                     onChange={handleInputChange}
@@ -1277,8 +1549,8 @@ export default function Home() {
                   <label className="font-code-sm text-[11px] text-text-muted tracking-widest uppercase mb-2">
                     Email
                   </label>
-                  <input 
-                    type="email" 
+                  <input
+                    type="email"
                     name="email"
                     value={formState.email}
                     onChange={handleInputChange}
@@ -1292,7 +1564,7 @@ export default function Home() {
                   <label className="font-code-sm text-[11px] text-text-muted tracking-widest uppercase mb-2">
                     Message
                   </label>
-                  <textarea 
+                  <textarea
                     name="message"
                     value={formState.message}
                     onChange={handleInputChange}
@@ -1310,20 +1582,24 @@ export default function Home() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       className={`p-3.5 rounded text-[13px] font-body-base font-light border ${
-                        formFeedback.type === "success" 
+                        formFeedback.type === "success"
                           ? "bg-accent-chartreuse/5 border-accent-chartreuse/30 text-accent-chartreuse"
                           : "bg-red-500/5 border-red-500/30 text-red-400"
                       }`}
                     >
                       <div className="flex items-center gap-2">
-                        {formFeedback.type === "success" ? <CheckCircle2 size={16} /> : <Activity size={16} />}
+                        {formFeedback.type === "success" ? (
+                          <CheckCircle2 size={16} />
+                        ) : (
+                          <Activity size={16} />
+                        )}
                         {formFeedback.msg}
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
 
-                <button 
+                <button
                   type="submit"
                   disabled={isSubmitting}
                   className="w-full py-4.5 bg-accent-chartreuse text-bg-dark font-display-lg font-bold text-[14px] uppercase tracking-wider rounded hover:opacity-90 transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 shadow-[0_4px_20px_rgba(200,240,90,0.2)] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:pointer-events-none disabled:transform-none"
@@ -1342,7 +1618,6 @@ export default function Home() {
               </form>
             </div>
           </div>
-
         </div>
       </section>
 
@@ -1373,13 +1648,23 @@ export default function Home() {
               </div>
 
               {/* Close Button */}
-              <button 
+              <button
                 onClick={() => setSelectedProject(null)}
                 className="absolute top-4 right-4 text-text-muted hover:text-accent-chartreuse p-2.5 rounded-full hover:bg-white/5 transition-all duration-300 cursor-pointer"
                 aria-label="Close modal"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </button>
 
@@ -1399,42 +1684,52 @@ export default function Home() {
               </p>
 
               {/* Key Contributions & Features */}
-              {selectedProject.bullets && selectedProject.bullets.length > 0 && (
-                <div className="mb-8">
-                  <h4 className="font-code-sm text-[10px] sm:text-[11px] text-text-primary tracking-[0.15em] uppercase mb-4 pb-2 border-b border-border-dim font-bold">
-                    Key Contributions &amp; Achievements
-                  </h4>
-                  <ul className="space-y-4 list-none pl-0">
-                    {selectedProject.bullets.map((bullet, bIdx) => (
-                      <li key={bIdx} className="font-body-base text-[14px] text-text-muted font-light leading-relaxed pl-6 relative hover:text-text-primary transition-colors duration-300">
-                        <span className="absolute left-0 text-accent-chartreuse font-bold">→</span>
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+              {selectedProject.bullets &&
+                selectedProject.bullets.length > 0 && (
+                  <div className="mb-8">
+                    <h4 className="font-code-sm text-[10px] sm:text-[11px] text-text-primary tracking-[0.15em] uppercase mb-4 pb-2 border-b border-border-dim font-bold">
+                      Key Contributions &amp; Achievements
+                    </h4>
+                    <ul className="space-y-4 list-none pl-0">
+                      {selectedProject.bullets.map((bullet, bIdx) => (
+                        <li
+                          key={bIdx}
+                          className="font-body-base text-[14px] text-text-muted font-light leading-relaxed pl-6 relative hover:text-text-primary transition-colors duration-300"
+                        >
+                          <span className="absolute left-0 text-accent-chartreuse font-bold">
+                            →
+                          </span>
+                          {bullet}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
               {/* Metrics Section */}
-              {selectedProject.metrics && selectedProject.metrics.length > 0 && (
-                <div className="mb-8">
-                  <h4 className="font-code-sm text-[10px] sm:text-[11px] text-text-primary tracking-[0.15em] uppercase mb-4 pb-2 border-b border-border-dim font-bold">
-                    Performance Metrics
-                  </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    {selectedProject.metrics.map((metric, mIdx) => (
-                      <div key={mIdx} className="glass-panel p-4 rounded border border-border-dim text-center hover:border-accent-chartreuse/25 transition-all">
-                        <span className="font-display-lg font-bold text-[20px] text-accent-chartreuse block mb-1">
-                          {metric.val}
-                        </span>
-                        <span className="text-[11px] text-text-muted leading-tight block uppercase tracking-wider font-light">
-                          {metric.lbl}
-                        </span>
-                      </div>
-                    ))}
+              {selectedProject.metrics &&
+                selectedProject.metrics.length > 0 && (
+                  <div className="mb-8">
+                    <h4 className="font-code-sm text-[10px] sm:text-[11px] text-text-primary tracking-[0.15em] uppercase mb-4 pb-2 border-b border-border-dim font-bold">
+                      Performance Metrics
+                    </h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      {selectedProject.metrics.map((metric, mIdx) => (
+                        <div
+                          key={mIdx}
+                          className="glass-panel p-4 rounded border border-border-dim text-center hover:border-accent-chartreuse/25 transition-all"
+                        >
+                          <span className="font-display-lg font-bold text-[20px] text-accent-chartreuse block mb-1">
+                            {metric.val}
+                          </span>
+                          <span className="text-[11px] text-text-muted leading-tight block uppercase tracking-wider font-light">
+                            {metric.lbl}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
               {/* Technologies */}
               <div>
@@ -1443,14 +1738,14 @@ export default function Home() {
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {selectedProject.tags.map((tag, tagIdx) => (
-                    <span 
-                      key={tagIdx} 
+                    <span
+                      key={tagIdx}
                       className={`px-3 py-1.5 rounded text-[11px] font-code-sm tracking-wider ${
-                        tag.theme === "blue" 
-                          ? "bg-accent-purple/10 text-[#A89FFF] border border-accent-purple/10" 
+                        tag.theme === "blue"
+                          ? "bg-accent-purple/10 text-[#A89FFF] border border-accent-purple/10"
                           : tag.theme === "orange"
-                          ? "bg-accent-orange/10 text-[#FF9D78] border border-accent-orange/10"
-                          : "bg-tag-bg text-accent-chartreuse border border-accent-chartreuse/10"
+                            ? "bg-accent-orange/10 text-[#FF9D78] border border-accent-orange/10"
+                            : "bg-tag-bg text-accent-chartreuse border border-accent-chartreuse/10"
                       }`}
                     >
                       {tag.text}

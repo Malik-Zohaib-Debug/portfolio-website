@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Border Gradient -->
+    <linearGradient id="borderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C8F05A" />
+      <stop offset="50%" stop-color="#6C63FF" />
+      <stop offset="100%" stop-color="#FF6B35" />
+    </linearGradient>
+
+    <!-- Text Gradient -->
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C8F05A" />
+      <stop offset="50%" stop-color="#6C63FF" />
+      <stop offset="100%" stop-color="#FF6B35" />
+    </linearGradient>
+
+    <!-- Ambient Glowing Radial Background -->
+    <radialGradient id="ambientGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#6C63FF" stop-opacity="0.25" />
+      <stop offset="40%" stop-color="#C8F05A" stop-opacity="0.12" />
+      <stop offset="80%" stop-color="#FF6B35" stop-opacity="0.05" />
+      <stop offset="100%" stop-color="#0A0A0F" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Wireframe grid pattern matching the main layout -->
+    <pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="2"/>
+    </pattern>
+  </defs>
+
+  <!-- Squircle Base Frame -->
+  <rect x="16" y="16" width="480" height="480" rx="128" fill="#0A0A0F" stroke="url(#borderGradient)" stroke-width="12" />
+
+  <!-- Cyber Grid Mesh Overlay -->
+  <rect x="22" y="22" width="468" height="468" rx="122" fill="url(#gridPattern)" />
+
+  <!-- Soft Cyber Ambient Glow behind the text -->
+  <circle cx="256" cy="256" r="180" fill="url(#ambientGlow)" />
+
+  <!-- The "MZZ" Geometric Monogram SVG Vector Paths -->
+  <g stroke="url(#textGradient)" stroke-width="48" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Stylized Geometric "M" -->
+    <path d="M 71,360 L 71,150 L 131,265 L 191,150 L 191,360" />
+    
+    <!-- Stylized Geometric "Z" (First) -->
+    <path d="M 226,150 L 316,150 L 226,360 L 316,360" />
+    
+    <!-- Stylized Geometric "Z" (Second) -->
+    <path d="M 351,150 L 441,150 L 351,360 L 441,360" />
+  </g>
+</svg>
