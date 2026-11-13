@@ -15,6 +15,8 @@ import {
   Database,
   ArrowUpRight,
 } from "lucide-react";
+import BlogCarousel from "@/components/BlogCarousel";
+import { blogPosts } from "@/data/blogPosts";
 
 // --- Typewriter Segment Interface ---
 interface Segment {
@@ -426,7 +428,7 @@ export default function Home() {
 
             <div className="flex items-center gap-6">
               <a
-                href="https://github.com/Malik-Zohaib-Debug"
+                href="https://github.com/ZohaibZahid12"
                 target="_blank"
                 rel="noreferrer"
                 className="font-code-sm text-[12px] text-text-muted hover:text-text-primary border-b border-transparent hover:border-text-primary transition-all duration-300 pb-0.5 flex items-center gap-1.5 group"
@@ -1406,12 +1408,28 @@ export default function Home() {
 
       <hr className="border-t border-border-dim max-w-[1200px] mx-auto" />
 
+      {/* ==================== BLOG SECTION ==================== */}
+      <section
+        className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto relative z-10"
+        id="blog"
+      >
+        <div className="section-eyebrow">07 — writing</div>
+
+        <h2 className="font-display-lg text-[36px] sm:text-[48px] font-extrabold text-text-primary leading-none uppercase mb-16">
+          Blog
+        </h2>
+
+        <BlogCarousel posts={blogPosts} />
+      </section>
+
+      <hr className="border-t border-border-dim max-w-[1200px] mx-auto" />
+
       {/* ==================== CONTACT SECTION ==================== */}
       <section
         className="py-24 px-6 md:px-16 max-w-[1200px] mx-auto relative z-10"
         id="contact"
       >
-        <div className="section-eyebrow">07 — contact</div>
+        <div className="section-eyebrow">08 — contact</div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <div className="lg:col-span-6 flex flex-col justify-between h-full">
@@ -1479,7 +1497,7 @@ export default function Home() {
               </a>
 
               <a
-                href="https://github.com/Malik-Zohaib-Debug"
+                href="https://github.com/ZohaibZahid12"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-between p-4 rounded bg-card-dark border border-border-dim hover:border-accent-orange/35 transition-all group"
@@ -1495,7 +1513,7 @@ export default function Home() {
                   </span>
                 </div>
                 <span className="font-code-sm text-[12px] text-text-muted">
-                  Malik-Zohaib-Debug
+                  ZohaibZahid12
                 </span>
               </a>
 

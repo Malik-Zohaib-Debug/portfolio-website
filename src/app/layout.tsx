@@ -81,6 +81,12 @@ export default function RootLayout({
             </Link>
             <Link
               className="font-code-sm text-[13px] tracking-wider uppercase text-text-muted hover:text-text-primary transition-colors cursor-pointer"
+              href="/#blog"
+            >
+              Blog
+            </Link>
+            <Link
+              className="font-code-sm text-[13px] tracking-wider uppercase text-text-muted hover:text-text-primary transition-colors cursor-pointer"
               href="/#contact"
             >
               Contact
@@ -91,7 +97,7 @@ export default function RootLayout({
             <div className="flex items-center gap-3 border-r border-border-dim pr-4">
               <a
                 className="text-text-muted hover:text-accent-chartreuse hover:-translate-y-0.5 transition-all duration-300 flex items-center"
-                href="https://github.com/Malik-Zohaib-Debug"
+                href="https://github.com/ZohaibZahid12"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -206,7 +212,7 @@ export default function RootLayout({
               <div className="flex gap-6">
                 <a
                   className="font-code-sm text-[10px] text-text-muted hover:text-accent-chartreuse transition-all uppercase tracking-wider flex items-center gap-1"
-                  href="https://github.com/Malik-Zohaib-Debug"
+                  href="https://github.com/ZohaibZahid12"
                   target="_blank"
                   rel="noreferrer"
                 >
