@@ -280,7 +280,7 @@ export default function Home() {
       id: "dark-weather",
       category: "ai",
       title: "Dark Weather — AI Weather App",
-      type: "AI · Python",
+      type: "AI · Freelance · Team Lead",
       desc: "Async-first weather app with an agentic AI assistant using OpenAI SDK + vector DB for persistent conversational context. Response time cut from 2–3s to under 1s.",
       bullets: [
         "Optimized infrastructure of a weather application by converting APIs and server to asynchronous, reducing response time from 2-3 seconds to under 1 second.",
@@ -403,7 +403,7 @@ export default function Home() {
 
             <div className="font-code-sm text-[14px] text-text-muted mb-6 tracking-wide flex items-center gap-2">
               <span className="text-accent-chartreuse font-bold">◇</span>
-              <span>Full-Stack AI Engineer · 5+ yrs · Lahore, PK</span>
+              <span>Full-Stack AI Engineer · 4+ yrs · Lahore, PK</span>
             </div>
 
             <p className="font-body-base text-[17px] md:text-[18px] text-text-muted font-light leading-relaxed max-w-[540px] mb-8">
@@ -505,7 +505,7 @@ export default function Home() {
                     Experience
                   </span>
                   <span className="font-display-lg font-bold text-[16px] text-accent-chartreuse drop-shadow-[0_0_8px_rgba(200,240,90,0.2)]">
-                    <Counter value="5+ years" />
+                    <Counter value="4+ years" />
                   </span>
                 </div>
 
@@ -635,7 +635,7 @@ export default function Home() {
             </h2>
             <div className="space-y-6 font-body-base text-[16px] text-text-muted font-light leading-relaxed max-w-[620px]">
               <p>
-                Five years building software that actually ships — from
+                Over four years building software that actually ships — from
                 responsive React frontends to backend architectures handling
                 real production load. My work sits at the intersection of{" "}
                 <strong className="text-text-primary font-semibold">
@@ -663,8 +663,9 @@ export default function Home() {
                 <strong className="text-text-primary font-medium">
                   Geekybugs
                 </strong>
-                , where I led frontend architecture and delivered production AI
-                features.
+                , where I grew from Associate Software Engineer to Frontend
+                Lead and delivered production AI features. Before that, I led a
+                freelance contract team building the Dark Weather platform.
               </p>
             </div>
           </div>
@@ -673,7 +674,7 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="glass-panel p-6 rounded border border-border-dim group card-hover-effect hover:border-accent-chartreuse/30">
                 <div className="font-display-lg font-extrabold text-[42px] text-accent-chartreuse leading-none mb-2">
-                  <Counter value="5+" />
+                  <Counter value="4+" />
                 </div>
                 <div className="text-[13px] text-text-muted font-light group-hover:text-text-primary transition-colors">
                   Years in production
@@ -1024,9 +1025,12 @@ export default function Home() {
               <div className="font-code-sm text-[11px] tracking-widest text-accent-purple uppercase mb-1 font-semibold">
                 Geekybugs · Lahore, Pakistan
               </div>
-              <h3 className="font-display-lg font-bold text-[22px] text-text-primary group-hover:text-accent-purple transition-colors mb-4">
-                Associate Software Engineer
+              <h3 className="font-display-lg font-bold text-[22px] text-text-primary group-hover:text-accent-purple transition-colors mb-1">
+                Frontend Lead
               </h3>
+              <div className="font-code-sm text-[12px] text-text-muted mb-4">
+                Promoted from Associate Software Engineer
+              </div>
 
               <ul className="space-y-2.5 max-w-[760px] font-body-base text-[14px] text-text-muted font-light mb-6 list-none">
                 <li className="pl-5 relative leading-relaxed">
@@ -1074,7 +1078,83 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Position Node 3 */}
+          {/* Position Node 3 — Freelance */}
+          <div className="relative pb-16 pl-6 md:pl-10 group">
+            {/* Node circle */}
+            <span className="absolute -left-[4.5px] top-1.5 w-[9px] h-[9px] bg-border-medium rounded-full group-hover:bg-accent-chartreuse shadow-sm transition-colors duration-300"></span>
+
+            {/* Float dates on the left on desktop */}
+            <div className="absolute left-[-150px] top-1.5 hidden md:block font-code-sm text-[12px] text-text-muted w-[120px] text-right font-medium">
+              06/2022 – 09/2023
+            </div>
+
+            {/* Mobile / fallback dates */}
+            <div className="block md:hidden font-code-sm text-[11px] text-accent-chartreuse font-medium mb-2">
+              06/2022 – 09/2023
+            </div>
+
+            <div className="flex flex-col items-start">
+              <div className="font-code-sm text-[11px] tracking-widest text-accent-chartreuse uppercase mb-1 font-semibold">
+                Dark Weather · Freelance / Contract
+              </div>
+              <h3 className="font-display-lg font-bold text-[22px] text-text-primary group-hover:text-accent-chartreuse transition-colors mb-4">
+                Team Lead
+              </h3>
+
+              <ul className="space-y-2.5 max-w-[760px] font-body-base text-[14px] text-text-muted font-light mb-6 list-none">
+                <li className="pl-5 relative leading-relaxed">
+                  <span className="absolute left-0 text-accent-chartreuse font-bold">
+                    →
+                  </span>
+                  Converted the weather platform&#39;s APIs and server to
+                  asynchronous Django DRF, cutting response time from 2–3s to
+                  under 1s.
+                </li>
+                <li className="pl-5 relative leading-relaxed">
+                  <span className="absolute left-0 text-accent-chartreuse font-bold">
+                    →
+                  </span>
+                  Revamped the legacy weather UI into a modern, responsive React
+                  + TailwindCSS interface.
+                </li>
+                <li className="pl-5 relative leading-relaxed">
+                  <span className="absolute left-0 text-accent-chartreuse font-bold">
+                    →
+                  </span>
+                  From mid-2023, built an AI Weather Assistant on the OpenAI SDK
+                  with a Qdrant vector store for personalized conversational
+                  context.
+                </li>
+                <li className="pl-5 relative leading-relaxed">
+                  <span className="absolute left-0 text-accent-chartreuse font-bold">
+                    →
+                  </span>
+                  Designed an agentic tool layer that routes prompts to weather,
+                  air-quality, and alert tools.
+                </li>
+              </ul>
+
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "Python",
+                  "Django DRF (async)",
+                  "React",
+                  "TailwindCSS",
+                  "OpenAI SDK",
+                  "Qdrant",
+                ].map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-2.5 py-1 bg-white/5 border border-border-dim rounded text-[11px] font-code-sm text-text-muted tracking-wide group-hover:border-accent-chartreuse/20 transition-all"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Position Node 4 — Education */}
           <div className="relative pl-6 md:pl-10 group">
             {/* Node circle */}
             <span className="absolute -left-[4.5px] top-1.5 w-[9px] h-[9px] bg-border-medium rounded-full group-hover:bg-accent-orange shadow-sm transition-colors duration-300"></span>

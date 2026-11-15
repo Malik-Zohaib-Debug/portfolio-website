@@ -51,7 +51,7 @@ export default function About() {
               </h2>
               <p className="text-on-surface-variant font-body-base leading-relaxed mb-6">
                 I am a passionate AI Software Architect and Full-Stack Developer
-                with over 3 years of experience. I build at the intersection of
+                with over four years of experience. I build at the intersection of
                 modern full-stack engineering and applied Artificial
                 Intelligence.
               </p>
